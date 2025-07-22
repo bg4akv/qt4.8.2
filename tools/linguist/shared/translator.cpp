@@ -287,7 +287,8 @@ bool Translator::load(const QString &filename, ConversionData &cd, const QString
 
     QString fmt = guessFormat(filename, format);
 
-    foreach (const FileFormat &format, registeredFileFormats()) {
+    QList<Translator::FileFormat> &formats = registeredFileFormats();
+    for (const FileFormat &format : formats) {
         if (fmt == format.extension) {
             if (format.loader)
                 return (*format.loader)(*this, file, cd);
@@ -332,7 +333,8 @@ bool Translator::save(const QString &filename, ConversionData &cd, const QString
     QString fmt = guessFormat(filename, format);
     cd.m_targetDir = QFileInfo(filename).absoluteDir();
 
-    foreach (const FileFormat &format, registeredFileFormats()) {
+    QList<Translator::FileFormat> &formats = registeredFileFormats();
+    for (const FileFormat &format : formats) {
         if (fmt == format.extension) {
             if (format.saver)
                 return (*format.saver)(*this, file, cd);

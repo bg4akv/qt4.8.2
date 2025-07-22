@@ -164,7 +164,7 @@ ContextItem *DataModel::findContext(const QString &context) const
         if (ctx->context() == context)
             return ctx;
     }
-    return 0;
+    return nullptr;
 }
 
 MessageItem *DataModel::findMessage(const QString &context,
@@ -183,7 +183,7 @@ static int calcMergeScore(const DataModel *one, const DataModel *two)
         if (ContextItem *c = one->findContext(oc->context())) {
             for (int j = 0; j < oc->messageCount(); ++j) {
                 MessageItem *m = oc->messageItem(j);
-                if (c->findMessage(m->text(), m->comment()) >= 0)
+                if (c->findMessage(m->text(), m->comment()) != nullptr)
                     ++inBoth;
             }
         }

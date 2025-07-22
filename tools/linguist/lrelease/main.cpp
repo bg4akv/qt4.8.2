@@ -306,7 +306,7 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    foreach (const QString &inputFile, inputFiles) {
+    for (const QString &inputFile : inputFiles) {
         if (inputFile.endsWith(QLatin1String(".pro"), Qt::CaseInsensitive)
             || inputFile.endsWith(QLatin1String(".pri"), Qt::CaseInsensitive)) {
             QFileInfo fi(inputFile);
